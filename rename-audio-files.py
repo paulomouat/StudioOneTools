@@ -26,7 +26,7 @@ def finalize_song(songfile):
     shutil.make_archive(songfile, 'zip', working_folder)
     shutil.move(songfile + '.zip', songfile)
 
-def get_renamed(mediafolder, inputprefix, outputprefix):
+def get_files_to_rename(mediafolder, inputprefix, outputprefix):
     inputpath = mediafolder + "/" + inputprefix
     outputpath = mediafolder + "/" + outputprefix
     
@@ -50,10 +50,20 @@ def get_renamed(mediafolder, inputprefix, outputprefix):
 
     return rename_list
 
-def rename_files(mediafolder, inputprefix, outputprefix):
-    renamed = get_renamed(mediafolder, inputprefix, outputprefix)
-    print('renamed:', renamed)
-    return renamed
+def get_events_to_rename(files_to_rename):
+    event_list = []
+    return event_list
+
+def rename_files(files_to_rename):
+    for idx, rename in enumerate(files_to_rename):
+        shutil.copy(rename['original'], rename['renamed'])
+    return files_to_rename
+
+def rename_file_references(files_to_rename):
+    return files_to_rename
+
+def rename_event_references(events_to_rename):
+    return events_to_rename
 
 def main(argv):
     inputprefix = ''
@@ -80,7 +90,11 @@ def main(argv):
         usage()
 
     prepare_song(songfile)
-    rename_files(mediafolder, inputprefix, outputprefix)    
+    files_to_rename = get_files_to_rename(mediafolder, inputprefix, outputprefix)
+    rename_files(files_to_rename)
+    rename_file_references(files_to_rename)
+    events_to_rename = get_events_to_rename(files_to_rename)
+    rename_event_references(events_to_rename)
     finalize_song('zipped.song')
 
 if __name__ == "__main__":
