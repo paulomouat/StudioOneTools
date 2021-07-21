@@ -15,6 +15,24 @@ def usage():
     print('rename-audio-files.py -s <song-file> -f <media-folder> -i <input-prefix> -o <output-prefix>')
     sys.exit(2)
 
+def get_audiobendx_path(stem):
+    path = PurePath("/ClipData") / "Audio" / stem
+    return path
+
+def get_chordx_path(stem):
+    path = PurePath("/ClipData") / "Audio" / stem
+    return path
+
+def get_audiobendx_url(stem):
+    path = get_audiobendx_path(stem)
+    url = "media://" + str(path) + stem + ".audiobendx"
+    return url
+
+def get_chordx_url(stem):
+    path = get_chordx_path(stem)
+    url = "media://" + str(path) + stem + ".chordx"
+    return url
+
 def prepare_xml_file(file, root_tag):
     lines = []
     with open(file, encoding='UTF-8') as f:
@@ -110,7 +128,17 @@ def rename_files(files_to_rename):
 
 def rename_file_references(songfile, files_to_rename):
     # files are referenced using URL notation
-    replacements = {'file://' + str(e['originalFile']): 'file://' + str(e['renamedFile']) for e in files_to_rename}
+    replacements = {
+        'file://' + str(e['originalFile']): {
+            'renamedFile': 'file://' + str(e['renamedFile']),
+            'originalStem': e['originalStem'],
+            'renamedStem': e['renamedStem'],
+            'originalBendMarkers': "media:///ClipData/Audio/" + e['originalStem'] + "/" + e['originalStem'] + ".audiobendx",
+            'originalChords': "media:///ClipData/Audio/" + e['originalStem'] + "/" + e['originalStem'] + ".chordx",
+            'renamedBendMarkers': "media:///ClipData/Audio/" + e['renamedStem'] + "/" + e['renamedStem'] + ".audiobendx",
+            'renamedChords': "media:///ClipData/Audio/" + e['renamedStem'] + "/" + e['renamedStem'] + ".chordx"
+        } for e in files_to_rename
+    }
 
     # file references are all contained in the file Song/mediapool.xml
     working_folder = get_working_folder(songfile)
@@ -128,7 +156,7 @@ def rename_file_references(songfile, files_to_rename):
         for urlElement in urlElements:
             url = urlElement.attrib['url']
             if url in replacements:
-                urlElement.attrib['url'] = replacements[url]
+                urlElement.attrib['url'] = replacements[url]['renamedFile']
 
     et = ET.ElementTree(root)
     # need to register the namespace with prefix 'x' so that the
@@ -177,7 +205,7 @@ def main(argv):
 
     songfile = get_song_file(songfileOpt)
 
-    #prepare_song(songfile)
+    prepare_song(songfile)
     files_to_rename = get_files_to_rename(songfile, mediafolder, inputprefix, outputprefix)
     rename_files(files_to_rename)
     rename_file_references(songfile, files_to_rename)
