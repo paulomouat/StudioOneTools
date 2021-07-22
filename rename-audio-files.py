@@ -9,28 +9,20 @@ from pathlib import Path, PurePath
 from io import BytesIO
 
 working_folder_name = "_s1rename_temp"
-xmlns_attribute = 'xmlns:x="http://www.presonus.com/"'
+xmlns = "urn:presonus"
+xmlns_attribute = 'xmlns:x="' + xmlns + '"'
 
 def usage():
     print('rename-audio-files.py -s <song-file> -f <media-folder> -i <input-prefix> -o <output-prefix>')
     sys.exit(2)
 
-def get_audiobendx_path(stem):
-    path = PurePath("/ClipData") / "Audio" / stem
+def get_clipdata_path(stem):
+    path = PurePath("ClipData") / "Audio" / stem
     return path
 
-def get_chordx_path(stem):
-    path = PurePath("/ClipData") / "Audio" / stem
-    return path
-
-def get_audiobendx_url(stem):
-    path = get_audiobendx_path(stem)
-    url = "media://" + str(path) + stem + ".audiobendx"
-    return url
-
-def get_chordx_url(stem):
-    path = get_chordx_path(stem)
-    url = "media://" + str(path) + stem + ".chordx"
+def get_clipdata_url(stem, suffix):
+    path = get_clipdata_path(stem)
+    url = "media://" + str(path) + "/" + stem + suffix
     return url
 
 def prepare_xml_file(file, root_tag):
@@ -133,10 +125,10 @@ def rename_file_references(songfile, files_to_rename):
             'renamedFile': 'file://' + str(e['renamedFile']),
             'originalStem': e['originalStem'],
             'renamedStem': e['renamedStem'],
-            'originalBendMarkers': "media:///ClipData/Audio/" + e['originalStem'] + "/" + e['originalStem'] + ".audiobendx",
-            'originalChords': "media:///ClipData/Audio/" + e['originalStem'] + "/" + e['originalStem'] + ".chordx",
-            'renamedBendMarkers': "media:///ClipData/Audio/" + e['renamedStem'] + "/" + e['renamedStem'] + ".audiobendx",
-            'renamedChords': "media:///ClipData/Audio/" + e['renamedStem'] + "/" + e['renamedStem'] + ".chordx"
+            'originalBendMarkers': get_clipdata_url(e['originalStem'], ".audiobendx"),
+            'originalChords': get_clipdata_url(e['originalStem'], ".chordx"),
+            'renamedBendMarkers': get_clipdata_url(e['renamedStem'], ".audiobendx"),
+            'renamedChords': get_clipdata_url(e['renamedStem'], ".chordx")
         } for e in files_to_rename
     }
 
@@ -152,16 +144,30 @@ def rename_file_references(songfile, files_to_rename):
     xml = prepare_xml_file(mediapool, "MediaPool")
     root = ET.fromstring(xml)
     for audioClip in root.iter('AudioClip'):
-        urlElements = audioClip.findall("Url[@{http://www.presonus.com/}id='path']")
-        for urlElement in urlElements:
-            url = urlElement.attrib['url']
+        urlPaths = audioClip.findall("Url[@{urn:presonus}id='path']")
+        for urlPath in urlPaths:
+            url = urlPath.attrib['url']
             if url in replacements:
-                urlElement.attrib['url'] = replacements[url]['renamedFile']
+                replacement = replacements[url]
+                urlPath.attrib['url'] = replacement['renamedFile']
+                urlBendMarkers = audioClip.find("*//Url[@{urn:presonus}id='bendMarkers']")
+                if urlBendMarkers is not None:
+                    urlBendMarkers.attrib['url'] = replacement['renamedBendMarkers']
+                urlChords = audioClip.find("*//Url[@{urn:presonus}id='chords']")
+                if urlChords is not None:
+                    urlChords.attrib['url'] = replacement['renamedChords']
+                originalStem = replacement['originalStem']
+                renamedStem = replacement['renamedStem']
+                clipdata = working_folder / get_clipdata_path(originalStem)
+                renamed_clipdata = working_folder / get_clipdata_path(renamedStem)
+                shutil.move(str(clipdata / originalStem) + ".audiobendx", str(clipdata / renamedStem) + ".audiobendx")
+                shutil.move(str(clipdata / originalStem) + ".chordx", str(clipdata / renamedStem) + ".chordx")
+                shutil.move(str(clipdata), str(renamed_clipdata))
 
     et = ET.ElementTree(root)
     # need to register the namespace with prefix 'x' so that the
     # output matches what Studio One produces
-    ET.register_namespace("x", "http://www.presonus.com/")
+    ET.register_namespace("x", xmlns)
 
     # fake file to obtain a string representation of the whole
     # file so that we can post-process it to remove the bogus
