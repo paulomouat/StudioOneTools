@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import sys, getopt
+import calendar, time
 import zipfile
-import shutil
-import glob
+import shutil, glob
 import xml.etree.ElementTree as ET
 from pathlib import Path, PurePath
 from io import BytesIO
@@ -53,14 +53,14 @@ def restore_xml(xml, root_tag):
     restored = '\n'.join(processed)
     return restored
 
-def finalize_xml_file(et, root_element_name, fullpath):
+def finalize_xml_file(et, root_tag, fullpath):
     # fake file to obtain a string representation of the whole
     # file so that we can post-process it to remove the bogus
     # xml namespace declaration from the root element
     fake_file = BytesIO()
     et.write(fake_file, encoding='utf-8', xml_declaration=True) 
     xml_with_changes = fake_file.getvalue().decode('utf-8')
-    processed = restore_xml(xml_with_changes, root_element_name)
+    processed = restore_xml(xml_with_changes, root_tag)
 
     with open(str(fullpath), "w") as target_file:
         target_file.write(processed)
@@ -77,7 +77,8 @@ def get_working_folder(songfile):
     return path
 
 def prepare_song(songfile):
-    shutil.copyfile(songfile['full'], str(songfile['full']) + ".rename-bak")
+    epoch_seconds = calendar.timegm(time.gmtime())
+    shutil.copyfile(songfile['full'], str(songfile['full']) + "." + str(epoch_seconds) + "-bak")
 
     working_folder = get_working_folder(songfile)
     if working_folder.exists() and working_folder.is_dir():
@@ -94,7 +95,6 @@ def finalize_song(songfile):
 
 def get_files_to_rename(songfile, mediafolder, inputprefix, outputprefix):
     inputpath = mediafolder + "/" + inputprefix
-    outputpath = mediafolder + "/" + outputprefix
 
     print('mediafolder:', mediafolder)    
     print('inputprefix:', inputprefix)
@@ -164,11 +164,20 @@ def rename_file_references(songfile, files_to_rename):
                 urlChords = audioClip.find("*//Url[@{urn:presonus}id='chords']")
                 if urlChords is not None:
                     urlChords.attrib['url'] = get_clipdata_url(renamedStem, ".chordx")
+
+                # rename clip data files
+                # these files are located in child folders of ClipData/Audio, named 
+                #   ClipData/Audio/<original stem>
+                #       <original stem>.audiobendx
+                #       <original stem>.chordx
                 clipdata = working_folder / get_clipdata_path(originalStem)
                 renamed_clipdata = working_folder / get_clipdata_path(renamedStem)
                 shutil.move(str(clipdata / originalStem) + ".audiobendx", str(clipdata / renamedStem) + ".audiobendx")
                 shutil.move(str(clipdata / originalStem) + ".chordx", str(clipdata / renamedStem) + ".chordx")
                 shutil.move(str(clipdata), str(renamed_clipdata))
+
+                # collect the clip ids of each of the renamed audio files, as we
+                # need to know these to rename the events that reference them
                 id = audioClip.attrib['mediaID']
                 renamed_file_references.append({'id': id, 'originalStem': originalStem, 'renamedStem': renamedStem})
 
