@@ -53,6 +53,18 @@ def restore_xml(xml, root_tag):
     restored = '\n'.join(processed)
     return restored
 
+def finalize_xml_file(et, root_element_name, fullpath):
+    # fake file to obtain a string representation of the whole
+    # file so that we can post-process it to remove the bogus
+    # xml namespace declaration from the root element
+    fake_file = BytesIO()
+    et.write(fake_file, encoding='utf-8', xml_declaration=True) 
+    xml_with_changes = fake_file.getvalue().decode('utf-8')
+    processed = restore_xml(xml_with_changes, root_element_name)
+
+    with open(str(fullpath), "w") as target_file:
+        target_file.write(processed)
+
 def get_song_file(songfile):
     full = PurePath(songfile)
     path = full.parent
@@ -83,9 +95,10 @@ def finalize_song(songfile):
 def get_files_to_rename(songfile, mediafolder, inputprefix, outputprefix):
     inputpath = mediafolder + "/" + inputprefix
     outputpath = mediafolder + "/" + outputprefix
-    
-    print('reading files with path and prefix', inputpath)
-    print('writing files with path and prefix', outputpath)
+
+    print('mediafolder:', mediafolder)    
+    print('inputprefix:', inputprefix)
+    print('outputprefix:', outputprefix)
 
     single = glob.glob(inputpath + '.wav')
     rest = glob.glob(inputpath + '(*).wav')
@@ -109,10 +122,6 @@ def get_files_to_rename(songfile, mediafolder, inputprefix, outputprefix):
 
     return rename_list
 
-def get_events_to_rename(files_to_rename):
-    event_list = []
-    return event_list
-
 def rename_files(files_to_rename):
     for idx, rename in enumerate(files_to_rename):
         shutil.copy(rename['originalFile'], rename['renamedFile'])
@@ -124,19 +133,16 @@ def rename_file_references(songfile, files_to_rename):
         'file://' + str(e['originalFile']): {
             'renamedFile': 'file://' + str(e['renamedFile']),
             'originalStem': e['originalStem'],
-            'renamedStem': e['renamedStem'],
-            'originalBendMarkers': get_clipdata_url(e['originalStem'], ".audiobendx"),
-            'originalChords': get_clipdata_url(e['originalStem'], ".chordx"),
-            'renamedBendMarkers': get_clipdata_url(e['renamedStem'], ".audiobendx"),
-            'renamedChords': get_clipdata_url(e['renamedStem'], ".chordx")
+            'renamedStem': e['renamedStem']
         } for e in files_to_rename
     }
 
     # file references are all contained in the file Song/mediapool.xml
     working_folder = get_working_folder(songfile)
     mediapool = PurePath(working_folder) / 'Song' / 'mediapool.xml'
-
     shutil.copyfile(mediapool, str(mediapool) + ".rename-bak")
+
+    renamed_file_references = []
 
     # Studio One does not include xml namespace declarations in its files
     # and ElementTree can't handle elements with undeclared xml namespaces,
@@ -150,40 +156,70 @@ def rename_file_references(songfile, files_to_rename):
             if url in replacements:
                 replacement = replacements[url]
                 urlPath.attrib['url'] = replacement['renamedFile']
-                urlBendMarkers = audioClip.find("*//Url[@{urn:presonus}id='bendMarkers']")
-                if urlBendMarkers is not None:
-                    urlBendMarkers.attrib['url'] = replacement['renamedBendMarkers']
-                urlChords = audioClip.find("*//Url[@{urn:presonus}id='chords']")
-                if urlChords is not None:
-                    urlChords.attrib['url'] = replacement['renamedChords']
                 originalStem = replacement['originalStem']
                 renamedStem = replacement['renamedStem']
+                urlBendMarkers = audioClip.find("*//Url[@{urn:presonus}id='bendMarkers']")
+                if urlBendMarkers is not None:
+                    urlBendMarkers.attrib['url'] = get_clipdata_url(renamedStem, ".audiobendx")
+                urlChords = audioClip.find("*//Url[@{urn:presonus}id='chords']")
+                if urlChords is not None:
+                    urlChords.attrib['url'] = get_clipdata_url(renamedStem, ".chordx")
                 clipdata = working_folder / get_clipdata_path(originalStem)
                 renamed_clipdata = working_folder / get_clipdata_path(renamedStem)
                 shutil.move(str(clipdata / originalStem) + ".audiobendx", str(clipdata / renamedStem) + ".audiobendx")
                 shutil.move(str(clipdata / originalStem) + ".chordx", str(clipdata / renamedStem) + ".chordx")
                 shutil.move(str(clipdata), str(renamed_clipdata))
+                id = audioClip.attrib['mediaID']
+                renamed_file_references.append({'id': id, 'originalStem': originalStem, 'renamedStem': renamedStem})
 
     et = ET.ElementTree(root)
     # need to register the namespace with prefix 'x' so that the
     # output matches what Studio One produces
     ET.register_namespace("x", xmlns)
 
-    # fake file to obtain a string representation of the whole
-    # file so that we can post-process it to remove the bogus
-    # xml namespace declaration from the root element
-    fake_file = BytesIO()
-    et.write(fake_file, encoding='utf-8', xml_declaration=True) 
-    xml_with_changes = fake_file.getvalue().decode('utf-8')
-    processed = restore_xml(xml_with_changes, "MediaPool")
+    finalize_xml_file(et, "MediaPool", mediapool)
 
-    with open(str(mediapool) + ".new.xml", "w") as mediapool_file:
-        mediapool_file.write(processed)
+    return renamed_file_references
 
-    return files_to_rename
+def rename_event_references(songfile, renamed_file_references):
+    replacements = {
+        e['id']: {
+            'originalStem': e['originalStem'],
+            'renamedStem': e['renamedStem']
+        } for e in renamed_file_references
+    }
 
-def rename_event_references(events_to_rename):
-    return events_to_rename
+    # event references are all contained in the file Song/song.xml
+    working_folder = get_working_folder(songfile)
+    song = PurePath(working_folder) / 'Song' / 'song.xml'
+    shutil.copyfile(song, str(song) + ".rename-bak")
+
+    renamed_event_references = []
+
+    # Studio One does not include xml namespace declarations in its files
+    # and ElementTree can't handle elements with undeclared xml namespaces,
+    # so we need to preprocess the file and add a bogus declaration
+    xml = prepare_xml_file(song, "Song")
+    root = ET.fromstring(xml)
+
+    for audioEvent in root.iter('AudioEvent'):
+        id = audioEvent.attrib['clipID']
+        if id in replacements:
+            replacement = replacements[id]
+            originalStem = replacement['originalStem']
+            renamedStem = replacement['renamedStem']
+            name = audioEvent.attrib['name']
+            if name == originalStem:
+                audioEvent.attrib['name'] = renamedStem
+
+    et = ET.ElementTree(root)
+    # need to register the namespace with prefix 'x' so that the
+    # output matches what Studio One produces
+    ET.register_namespace("x", xmlns)
+
+    finalize_xml_file(et, "Song", song)
+
+    return renamed_event_references
 
 def main(argv):
     inputprefix = ''
@@ -214,10 +250,8 @@ def main(argv):
     prepare_song(songfile)
     files_to_rename = get_files_to_rename(songfile, mediafolder, inputprefix, outputprefix)
     rename_files(files_to_rename)
-    rename_file_references(songfile, files_to_rename)
-    events_to_rename = get_events_to_rename(files_to_rename)
-    rename_event_references(events_to_rename)
-    songfile['stem'] = 'zipped'
+    renamed_file_references = rename_file_references(songfile, files_to_rename)
+    rename_event_references(songfile, renamed_file_references)
     finalize_song(songfile)
 
 if __name__ == "__main__":
