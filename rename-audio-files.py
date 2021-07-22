@@ -7,6 +7,7 @@ import shutil, glob
 import xml.etree.ElementTree as ET
 from pathlib import Path, PurePath
 from io import BytesIO
+from natsort import natsorted # pip install natsort
 
 working_folder_name = "_s1rename_temp"
 xmlns = "urn:presonus"
@@ -100,9 +101,14 @@ def get_files_to_rename(songfile, mediafolder, inputprefix, outputprefix):
     print('inputprefix:', inputprefix)
     print('outputprefix:', outputprefix)
 
+    # check if there are files using the default Studio One naming convention;
+    # if not, we check an alternate naming convention
     single = glob.glob(inputpath + '.wav')
     rest = glob.glob(inputpath + '(*).wav')
-    rest.sort()
+    if len(single) == 0 and len(rest) == 0:
+        rest = glob.glob(inputpath + '-*.wav')
+
+    rest = natsorted(rest)    
     
     existing = []
     existing.extend(single)
@@ -112,7 +118,7 @@ def get_files_to_rename(songfile, mediafolder, inputprefix, outputprefix):
     len_existing = len(existing)
     zfill_count = 2 if len_existing < 100 else len(str(len_existing))
     for idx, original in enumerate(existing):
-        originalFile = PurePath(original)
+        originalFile = Path(original).resolve()
         originalPath = originalFile.parent
         originalStem = originalFile.stem
         originalSuffix = originalFile.suffix
@@ -158,23 +164,25 @@ def rename_file_references(songfile, files_to_rename):
                 urlPath.attrib['url'] = replacement['renamedFile']
                 originalStem = replacement['originalStem']
                 renamedStem = replacement['renamedStem']
-                urlBendMarkers = audioClip.find("*//Url[@{urn:presonus}id='bendMarkers']")
-                if urlBendMarkers is not None:
-                    urlBendMarkers.attrib['url'] = get_clipdata_url(renamedStem, ".audiobendx")
-                urlChords = audioClip.find("*//Url[@{urn:presonus}id='chords']")
-                if urlChords is not None:
-                    urlChords.attrib['url'] = get_clipdata_url(renamedStem, ".chordx")
 
-                # rename clip data files
+                # rename clip data files and rename clip data references, if they exist
                 # these files are located in child folders of ClipData/Audio, named 
                 #   ClipData/Audio/<original stem>
                 #       <original stem>.audiobendx
                 #       <original stem>.chordx
                 clipdata = working_folder / get_clipdata_path(originalStem)
                 renamed_clipdata = working_folder / get_clipdata_path(renamedStem)
-                shutil.move(str(clipdata / originalStem) + ".audiobendx", str(clipdata / renamedStem) + ".audiobendx")
-                shutil.move(str(clipdata / originalStem) + ".chordx", str(clipdata / renamedStem) + ".chordx")
-                shutil.move(str(clipdata), str(renamed_clipdata))
+
+                urlBendMarkers = audioClip.find("*//Url[@{urn:presonus}id='bendMarkers']")
+                if urlBendMarkers is not None:
+                    urlBendMarkers.attrib['url'] = get_clipdata_url(renamedStem, ".audiobendx")
+                    shutil.move(str(clipdata / originalStem) + ".audiobendx", str(clipdata / renamedStem) + ".audiobendx")
+                urlChords = audioClip.find("*//Url[@{urn:presonus}id='chords']")
+                if urlChords is not None:
+                    urlChords.attrib['url'] = get_clipdata_url(renamedStem, ".chordx")
+                    shutil.move(str(clipdata / originalStem) + ".chordx", str(clipdata / renamedStem) + ".chordx")
+                if clipdata.is_dir():
+                    shutil.move(str(clipdata), str(renamed_clipdata))
 
                 # collect the clip ids of each of the renamed audio files, as we
                 # need to know these to rename the events that reference them
