@@ -139,7 +139,8 @@ def rename_file_references(songfile, files_to_rename):
                 if attributes is not None:
                     attributes.attrib['bitDepth'] = "24"
                     attributes.attrib['formatType'] = "1"
-                    attributes.attrib.pop('sampleType')
+                    if 'sampleType' in attributes.attrib:
+                        attributes.attrib.pop('sampleType')
 
                 # collect the clip ids of each of the renamed audio files, as we
                 # need to know these to rename the events that reference them
@@ -178,6 +179,13 @@ def main(argv):
 
     if inputformat == '' or outputformat == '' or songfileOpt == '' or mediafolder == '':
         usage()
+
+    resolved_media_folder = Path(mediafolder).resolve()
+    if not resolved_media_folder.is_dir():
+        print('media folder', mediafolder, 'not found in current directory')
+        sys.exit(2)
+
+    print('media folder', mediafolder, 'resolved to', resolved_media_folder)
 
     songfile = get_song_file(songfileOpt)
 
