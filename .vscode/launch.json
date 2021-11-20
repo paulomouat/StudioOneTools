@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["--inputprefix", "normal file", "--outputprefix", "nf", "--songfile", "test-song.song", "--mediafolder", "/Users/paulomouat/Documents/Studio One/Songs/test-song/raw"],
+            "args": ["--inputformat", "wav", "--outputformat", "flac", "--songfile", "test-song.song", "--mediafolder", "/Users/paulomouat/Documents/Studio One/Songs/test-song/raw"],
         }
     ]
 }

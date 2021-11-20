@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MixerConsole>
+	<Attributes x:id="channelSettings" version="1">
+		<Section path="262DFCFF48F5E247A5C323BF9520D998">
+			<Attributes visible="1" expanded="0" order="0"/>
+		</Section>
+		<Section path="FB4E83241B88A24FBAF18EC498BFC24E">
+			<Attributes visible="1" expanded="0" order="1"/>
+		</Section>
+	</Attributes>
+	<Attributes x:id="layoutSettings" version="1"/>
+	<Attributes x:id="channelBanks" remoteEdit="0">
+		<ChannelShowHidePreset x:id="ScreenBank" name="" version="1">
+			<List x:id="visible">
+				<UID uid="{262DFCFF-48F5-E247-A5C3-23BF9520D998}"/>
+			</List>
+		</ChannelShowHidePreset>
+		<ChannelShowHidePreset x:id="RemoteBank" name="" version="1">
+			<List x:id="visible">
+				<UID uid="{262DFCFF-48F5-E247-A5C3-23BF9520D998}"/>
+			</List>
+		</ChannelShowHidePreset>
+	</Attributes>
+	<Attributes x:id="HardwareControls" controlsVisible="1"/>
+	<Attributes x:id="MixerSnapshots" recallVisibility="1" recallVolume="1" recallPan="1" recallMute="1"
+	            recallInserts="0" recallSends="0" recallCueMix="0" recallInputFX="0" recallSelected="0"
+	            recallInputChannels="0" recallOutputChannels="0" snapshotName="-">
+	</Attributes>
+</MixerConsole>

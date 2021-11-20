@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaInformation>
+	<Attribute id="Media:Artwork" value="artwork.png"/>
+	<Attribute id="Document:Notes" value="notes.txt"/>
+	<Attribute id="Media:Artist" value="Paulo Mouat"/>
+	<Attribute id="Media:ArtistPage" value=""/>
+	<Attribute id="Media:Genre" value=""/>
+	<Attribute id="Media:Year" value="2021"/>
+	<Attribute id="Document:MimeType" value="application/x-presonus-song"/>
+	<Attribute id="Document:FormatVersion" value="6"/>
+	<Attribute id="Document:Title" value="test-song"/>
+	<Attribute id="Document:Creator" value="Paulo Mouat"/>
+	<Attribute id="Document:Generator" value="Studio One/5.3.0.65413"/>
+	<Attribute id="Media:SampleRate" value="96000"/>
+	<Attribute id="Media:FrameType" value="1"/>
+	<Attribute id="Media:Tempo" value="120"/>
+	<Attribute id="Media:TimeSignatureNumerator" value="4"/>
+	<Attribute id="Media:TimeSignatureDenominator" value="4"/>
+	<Attribute id="Media:KeySignature" value="-"/>
+	<Attribute id="Media:TrackCount" value="1"/>
+	<Attribute id="Media:Length" value="1200"/>
+	<Attribute id="Media:BitDepth" value="32"/>
+	<Attribute id="Media:TimeFormat" value="0"/>
+</MetaInformation>

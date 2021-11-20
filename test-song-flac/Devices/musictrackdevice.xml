@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MusicTrackDevice>
+	<Attributes x:id="channels" name="Channels" flags="1">
+		<ChannelGroup name="MusicTrack" flags="1">
+			<MusicTrackChannel transpose="0" velocity="0" name="Channel01" label="Chord Track" mute="0" solo="0"
+			                   soloSafe="0" color="￹00000000">
+				<UID x:id="uniqueID" uid="{59BE5DDE-43D4-754F-A732-CB0DAF891732}"/>
+				<Attributes x:id="Automation" mode="0"/>
+				<Attributes x:id="RecordUnit">
+					<Connection x:id="recordPort" objectID="AllInputFilterOUT" friendlyName="All Inputs/Any">
+						<Attributes x:id="data" recordArmed="0" monitorActive="0"/>
+					</Connection>
+				</Attributes>
+				<Attributes x:id="Inserts">
+					<Attributes x:id="Presets" pname="default" dirty="0"/>
+				</Attributes>
+			</MusicTrackChannel>
+		</ChannelGroup>
+	</Attributes>
+</MusicTrackDevice>

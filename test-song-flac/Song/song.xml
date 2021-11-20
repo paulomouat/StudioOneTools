@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Song popup="0" copyrighted="0" masterWithEffects="1">
+	<Attributes x:id="Root" defaultTimeFormat="2" stretch="0" envelopeVisibility="1" timeFormat="0" length="300">
+		<Attributes x:id="timeContext" sampleRate="96000" frameType="1" timeOffset="0" barOffset="0">
+			<TempoMap x:id="tempoMap">
+				<Attributes x:id="envelope">
+					<EnvelopePoint value="0.28205128205128204843532557788421399891376495361328"/>
+				</Attributes>
+				<TempoMapSegment curveType="0" start="0" end="1.7976931348623156386368421785227527018228425601508e+200"
+				                 tempo="0.5"/>
+			</TempoMap>
+			<TimeSignatureMap x:id="timeSignatureMap">
+				<TimeSignatureMapSegment start="0" numerator="4" denominator="4"/>
+			</TimeSignatureMap>
+			<KeySignatureMap x:id="keySignatureMap">
+				<Attributes root="0" scale="" start="0" anchor="1"/>
+			</KeySignatureMap>
+			<TimeZoneMap x:id="timeZoneMap">
+				<TimeZone start="0" end="3560.112604166666642413474619388580322265625" name=""/>
+			</TimeZoneMap>
+		</Attributes>
+		<Attributes x:id="attributes" recordResolution="32"/>
+		<List x:id="Tracks">
+			<MarkerTrack version="1" timeFormat="2">
+				<Attributes x:id="attributes" hidden="1"/>
+				<MarkerEvent markerType="2" timeFormat="2" name="Start"/>
+				<MarkerEvent markerType="3" start="2400" timeFormat="2" name="End"/>
+			</MarkerTrack>
+			<ArrangerTrack version="1" timeFormat="2" color="FF328A66">
+				<Attributes x:id="attributes" hidden="1"/>
+			</ArrangerTrack>
+			<ChordTrack version="1" timeFormat="2" color="FFAB661C" followEnabled="1" trackPlaybackEnabled="0"
+			            chordAuditionEnabled="1" playbackOctave="5" playbackVelocity="0.800000011920928955078125">
+				<Attributes x:id="attributes" hidden="1"/>
+				<UID x:id="channelID" uid="{59BE5DDE-43D4-754F-A732-CB0DAF891732}"/>
+			</ChordTrack>
+			<MediaTrack mediaType="Audio" tempoFollow="1" materialMode="0" layersFollow="1" version="1" trackID="{97A732F3-F469-0E45-961A-4FAB9FFC748B}"
+			            timeFormat="2" name="normal file" color="FFDD6105">
+				<SpeakerSetup x:id="trackFormat" type="Stereo"/>
+				<UID x:id="channelID" uid="{262DFCFF-48F5-E247-A5C3-23BF9520D998}"/>
+				<Attributes x:id="AutomationRegionList" visible="0">
+					<AutomationRegion title="Volume" identity="param:///AudioMixer/{262DFCFF-48F5-E247-A5C3-23BF9520D998}/volume"
+					                  metaIdentity="AudioTrackChannel/volume" color="FFFFD829"
+					                  mute="0">
+						<Url x:id="points" type="1" url="media:///Envelopes/normal file/Volume.envelopex"/>
+					</AutomationRegion>
+					<AutomationRegion title="Pan" identity="param:///AudioMixer/{262DFCFF-48F5-E247-A5C3-23BF9520D998}/pan"
+					                  metaIdentity="AudioTrackChannel/pan" color="FFC7FF3A" mute="0">
+						<Url x:id="points" type="1" url="media:///Envelopes/normal file/Pan.envelopex"/>
+					</AutomationRegion>
+				</Attributes>
+				<List x:id="Events">
+					<AudioEvent clipID="{10E44A9A-AD17-B940-981B-3AB8B51AEB26}" start="17" timeFormat="0" length="0.70000000000000150990331349021289497613906860351562"
+					            offset="0.300000000000000710542735760100185871124267578125" name="nf-05"
+					            speed="1" transpose="0" tune="0" normalize="0" modification="0">
+						<Attributes x:id="attributes" trackID="{97A732F3-F469-0E45-961A-4FAB9FFC748B}"/>
+					</AudioEvent>
+					<AudioEvent clipID="{54372BBC-74A6-C949-B779-62CC3B30A1E2}" timeFormat="0" length="0.81532291666666667495633191720116883516311645507812"
+					            name="nf-01" speed="1" transpose="0" tune="0" normalize="0" modification="0"/>
+					<AudioEvent clipID="{70A8FE5F-6096-6946-BB09-4F708A774DDC}" start="2.3559791666666667353524644568096846342086791992188"
+					            timeFormat="0" length="1.28135416666666657192763523198664188385009765625"
+					            name="nf-02" speed="1" transpose="0" tune="0" normalize="0" modification="0"/>
+					<AudioEvent clipID="{C1F62149-6FB7-FE4D-AC55-DDC391D8FF4B}" start="5.6440208333333332646475355431903153657913208007812"
+					            timeFormat="0" length="2.1779895833333333676762322284048423171043395996094"
+					            name="nf-03" speed="1" transpose="0" tune="0" normalize="0" modification="0"/>
+					<AudioEvent clipID="{870C7FCC-3194-C24D-89D4-29F50D6C7F16}" start="10.725333333333333385439800622407346963882446289062"
+					            timeFormat="0" length="1.2635208333333332042514030035817995667457580566406"
+					            name="nf-04" speed="1" transpose="0" tune="0" normalize="0" modification="0"/>
+					<AudioEvent clipID="{10E44A9A-AD17-B940-981B-3AB8B51AEB26}" start="13.97770833333333229120398755185306072235107421875"
+					            timeFormat="0" length="1.2635208333333332042514030035817995667457580566406"
+					            name="nf-05" speed="1" transpose="0" tune="0" normalize="0" modification="0"/>
+				</List>
+			</MediaTrack>
+		</List>
+	</Attributes>
+</Song>

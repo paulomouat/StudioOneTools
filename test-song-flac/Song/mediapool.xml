@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MediaPool>
+	<Attributes x:id="rootFolder">
+		<MediaFolder name="Audio">
+			<AudioClip mediaID="{10E44A9A-AD17-B940-981B-3AB8B51AEB26}" useCount="2" peak="0.33020293712615966796875">
+				<Url x:id="path" type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-05.flac"/>
+				<AudioTempoMap x:id="tempoMap" tempoApproved="1"/>
+				<Attributes x:id="format" frameCount="156114" sampleRate="96000" numChannels="2" bitDepth="24" formatType="1"/>
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url x:id="bendMarkers" type="1" url="media:///ClipData/Audio/nf-05/nf-05.audiobendx"/>
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url x:id="chords" type="1" url="media:///ClipData/Audio/nf-05/nf-05.chordx"/>
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+			<AudioClip mediaID="{870C7FCC-3194-C24D-89D4-29F50D6C7F16}" useCount="1" peak="0.33020293712615966796875">
+				<Url x:id="path" type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-04.flac"/>
+				<AudioTempoMap x:id="tempoMap" tempoApproved="1"/>
+				<Attributes x:id="format" frameCount="156114" sampleRate="96000" numChannels="2" bitDepth="24" formatType="1"/>
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url x:id="bendMarkers" type="1" url="media:///ClipData/Audio/nf-04/nf-04.audiobendx"/>
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url x:id="chords" type="1" url="media:///ClipData/Audio/nf-04/nf-04.chordx"/>
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+			<AudioClip mediaID="{C1F62149-6FB7-FE4D-AC55-DDC391D8FF4B}" useCount="1" peak="0.2047574520111083984375">
+				<Url x:id="path" type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-03.flac"/>
+				<AudioTempoMap x:id="tempoMap" tempoApproved="1"/>
+				<Attributes x:id="format" frameCount="243903" sampleRate="96000" numChannels="2" bitDepth="24" formatType="1"/>
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url x:id="bendMarkers" type="1" url="media:///ClipData/Audio/nf-03/nf-03.audiobendx"/>
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url x:id="chords" type="1" url="media:///ClipData/Audio/nf-03/nf-03.chordx"/>
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+			<AudioClip mediaID="{70A8FE5F-6096-6946-BB09-4F708A774DDC}" useCount="1" peak="0.0019948482513427734375">
+				<Url x:id="path" type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-02.flac"/>
+				<AudioTempoMap x:id="tempoMap" tempoApproved="1"/>
+				<Attributes x:id="format" frameCount="157826" sampleRate="96000" numChannels="2" bitDepth="24" formatType="1"/>
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url x:id="bendMarkers" type="1" url="media:///ClipData/Audio/nf-02/nf-02.audiobendx"/>
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url x:id="chords" type="1" url="media:///ClipData/Audio/nf-02/nf-02.chordx"/>
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+			<AudioClip mediaID="{54372BBC-74A6-C949-B779-62CC3B30A1E2}" useCount="1" peak="0.00047051906585693359375">
+				<Url x:id="path" type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-01.flac"/>
+				<AudioTempoMap x:id="tempoMap" tempoApproved="1"/>
+				<Attributes x:id="format" frameCount="113087" sampleRate="96000" numChannels="2" bitDepth="24" formatType="1"/>
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url x:id="bendMarkers" type="1" url="media:///ClipData/Audio/nf-01/nf-01.audiobendx"/>
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url x:id="chords" type="1" url="media:///ClipData/Audio/nf-01/nf-01.chordx"/>
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+		</MediaFolder>
+	</Attributes>
+	<Attributes x:id="packageInfos">
+		<Association key="presonus.studioone.bigfishloops" value="Big Fish Audio Loops and Kits"/>
+		<Association key="presonus.studioone.eal" value="Electronic Audioloops"/>
+		<Association key="samplemagic.studioone.impactxt" value="Impact XT Kits and Sounds"/>
+		<Association key="presonus.studioone.mvploops" value="MVP Loops and Kits"/>
+		<Association key="presonus.studioone.malletxt" value="Presence XT Core Mallets"/>
+		<Association key="presonus.studioone.pervocxt" value="Presence XT Core Percussion and Vocals"/>
+		<Association key="presonus.studioone.teaser1" value="Prime Selection Loops and Sounds"/>
+		<Association key="presonus.studioone.samplemagicloops" value="Sample Magic Loops and Kits"/>
+		<Association key="presonus.studioone.IR" value="Studio One Impulse Responses"/>
+		<Association key="presonus.studioone.instruments" value="Studio One Instruments Vol 1"/>
+		<Association key="presonus.studioone.instruments2" value="Studio One Instruments Vol 2"/>
+		<Association key="presonus.studioone.musicloops" value="Studio One Musicloops"/>
+		<Association key="presonus.studioone.ueberschall" value="Ueberschall Impact Drums"/>
+		<Association key="presonus.studioone.vengeance" value="Vengeance-Sound"/>
+	</Attributes>
+	<Attributes x:id="documentPath" type="1" url="file:///Users/paulomouat/Documents/projects/dev/StudioOneTools/test-song-flac.song"/>
+</MediaPool>

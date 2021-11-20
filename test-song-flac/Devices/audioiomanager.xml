@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AudioIOManager previewChannel="{FB4E8324-1B88-A24F-BAF1-8EC498BFC24E}">
+	<List x:id="deviceList">
+		<AudioIOAssignment deviceID="{96B3E5CB-0000-0043-4F52-45415544494F}" deviceName="Duet USB" machineID="Paulo’s iMac Pro"
+		                   deviceType="CoreAudio" inputCount="2" outputCount="4">
+			<Attributes x:id="inputs">
+			</Attributes>
+			<Attributes x:id="outputs">
+				<PortAssignment name="{FB4E8324-1B88-A24F-BAF1-8EC498BFC24E}">
+					<Association key="L" value="{96B3E5CB-0000-0043-4F52-45415544494F}/AudioInput00"/>
+					<Association key="R" value="{96B3E5CB-0000-0043-4F52-45415544494F}/AudioInput01"/>
+				</PortAssignment>
+			</Attributes>
+		</AudioIOAssignment>
+		<AudioIOAssignment deviceID="{1DDA9501-0000-0043-4F52-45415544494F}" deviceName="Groove" machineID="Paulo’s iMac Pro"
+		                   deviceType="CoreAudio" outputCount="2">
+			<Attributes x:id="inputs">
+			</Attributes>
+			<Attributes x:id="outputs">
+				<PortAssignment name="{FB4E8324-1B88-A24F-BAF1-8EC498BFC24E}">
+					<Association key="L" value="{1DDA9501-0000-0043-4F52-45415544494F}/AudioInput00"/>
+					<Association key="R" value="{1DDA9501-0000-0043-4F52-45415544494F}/AudioInput01"/>
+				</PortAssignment>
+			</Attributes>
+		</AudioIOAssignment>
+	</List>
+</AudioIOManager>

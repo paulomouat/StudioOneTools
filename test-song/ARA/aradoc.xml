@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ARADocument>
+	<ARAModelState persistentID="com.celemony.ara.chunk.13" factoryID="com.celemony.melodyne.arafactory.2d6fef9bb71acde0c1febcebfe360a088b683333"
+	               dataPath="ARA/ModelData/aramodel(1).dat">
+		<Attributes x:id="clips">
+		</Attributes>
+		<Attributes x:id="modifications">
+		</Attributes>
+	</ARAModelState>
+	<ARAModelState persistentID="com.Steinberg.SpectraLayers.aradocumentarchive.version2" factoryID="com.Steinberg.SpectraLayers.arafactory"
+	               dataPath="ARA/ModelData/aramodel(2).dat">
+		<Attributes x:id="clips">
+		</Attributes>
+		<Attributes x:id="modifications">
+		</Attributes>
+	</ARAModelState>
+</ARADocument>

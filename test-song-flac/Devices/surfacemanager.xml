@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SurfaceManager>
+	<Attributes instanceID="{C98E6235-CCBF-4F48-9665-13612CED2006}" modelID="{3C2B2278-2B10-4210-BD77-255864862328}"
+	            deviceName="FaderPort 8">
+		<Attributes x:id="global">
+			<Attributes x:id="controlAssignment" activePage="0">
+				<List x:id="pages">
+					<SurfaceAssignmentPage/>
+				</List>
+			</Attributes>
+		</Attributes>
+	</Attributes>
+	<Attributes instanceID="{E73256DB-A729-9B42-8143-DFCF27BD740F}" modelID="{850E9B2B-365D-794B-8184-14FA41A208FC}"
+	            deviceName="Modular">
+		<Attributes x:id="global">
+			<Attributes x:id="controlAssignment" activePage="0">
+				<List x:id="pages">
+					<SurfaceAssignmentPage/>
+				</List>
+			</Attributes>
+		</Attributes>
+	</Attributes>
+	<Attributes instanceID="{98AC524F-CEA2-054A-AF5F-2EF8778AD943}" modelID="{5BE1F62A-C278-BA43-85B3-4F23BBCD6CD3}"
+	            deviceName="K2600X">
+		<Attributes x:id="global">
+			<Attributes x:id="controlAssignment" activePage="0">
+			</Attributes>
+		</Attributes>
+	</Attributes>
+	<Attributes instanceID="{DED43DC4-0D64-0140-A140-C732236B9B4A}" modelID="{D8F2E841-1CF9-EC4C-9FE3-9BD26CC5C0FC}"
+	            deviceName="Max">
+		<Attributes x:id="global">
+			<Attributes x:id="controlAssignment" activePage="0">
+				<List x:id="pages">
+					<SurfaceAssignmentPage/>
+				</List>
+			</Attributes>
+		</Attributes>
+	</Attributes>
+	<Attributes instanceID="{BE679D1B-1D90-A145-8DEC-3E7CAA858284}" modelID="{DB63E785-D495-8D44-A5EE-5A38645701D0}"
+	            deviceName="Shove">
+		<Attributes x:id="global">
+			<Attributes x:id="controlAssignment" activePage="0">
+				<List x:id="pages">
+					<SurfaceAssignmentPage/>
+				</List>
+			</Attributes>
+		</Attributes>
+	</Attributes>
+	<Attributes instanceID="{675E41ED-C92C-7D4B-8F4E-917C177BB81F}" modelID="{27BA4613-B9F4-2C4F-B124-544EC849C192}"
+	            deviceName="MIDI Fighter Twister">
+		<Attributes x:id="global">
+			<Attributes x:id="controlAssignment" activePage="0">
+				<List x:id="pages">
+					<SurfaceAssignmentPage/>
+				</List>
+			</Attributes>
+		</Attributes>
+	</Attributes>
+</SurfaceManager>

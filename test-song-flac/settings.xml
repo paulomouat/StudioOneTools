@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings name="Settings" version="1">
+	<Section path="SongRenderer">
+		<Attributes/>
+	</Section>
+	<Section path="SoundVariations">
+		<Attributes version="1"/>
+	</Section>
+</Settings>

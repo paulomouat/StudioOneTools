@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AudioMixer>
+	<Attributes x:id="channels" name="Channels" flags="1">
+		<ChannelGroup name="AudioOutput" flags="1">
+			<AudioOutputChannel gain="1" pan="0.5" name="Channel01" label="Main" mute="0" solo="0" soloSafe="0"
+			                    color="￹00000000">
+				<SpeakerSetup x:id="speakerType" type="Stereo"/>
+				<UID x:id="uniqueID" uid="{FB4E8324-1B88-A24F-BAF1-8EC498BFC24E}"/>
+				<Attributes x:id="Automation" mode="0"/>
+				<Attributes x:id="Inserts">
+					<Attributes x:id="Presets" pname="default" dirty="0"/>
+					<Attributes x:id="Combinator" name="Combinator">
+						<UID x:id="uniqueID" uid="{D453122A-B461-2D4C-8EDC-E1FD40023210}"/>
+					</Attributes>
+				</Attributes>
+				<Attributes x:id="PostFaderInserts">
+					<Attributes x:id="Presets" pname="default" dirty="0"/>
+					<Attributes x:id="Combinator" name="Combinator">
+						<UID x:id="uniqueID" uid="{3FCB0904-BD0B-C441-8C67-48F867311839}"/>
+					</Attributes>
+				</Attributes>
+				<Attributes x:id="AudioClick" on="1" gain="1"/>
+				<Attributes x:id="MacroControls" showMacroPads="0"/>
+				<Attributes x:id="AudioBusMixFX" passThrough="1">
+					<Attributes x:id="Presets" pname="default" dirty="0"/>
+				</Attributes>
+			</AudioOutputChannel>
+		</ChannelGroup>
+		<ChannelGroup name="AudioTrack" flags="1">
+			<AudioTrackChannel gain="1" pan="0.5" name="Channel01" label="normal file" mute="0" solo="0" soloSafe="0"
+			                   color="FFDD6105">
+				<SpeakerSetup x:id="speakerType" type="Stereo"/>
+				<UID x:id="uniqueID" uid="{262DFCFF-48F5-E247-A5C3-23BF9520D998}"/>
+				<Connection x:id="destination" objectID="{FB4E8324-1B88-A24F-BAF1-8EC498BFC24E}/Input" friendlyName="Main"/>
+				<Attributes x:id="Automation" mode="0"/>
+				<Attributes x:id="Inserts">
+					<Attributes x:id="Presets" pname="default" dirty="0"/>
+					<Attributes x:id="Combinator" name="Combinator">
+						<UID x:id="uniqueID" uid="{BC2DC229-EF60-C841-B928-EDB9E1C8B386}"/>
+					</Attributes>
+				</Attributes>
+				<Attributes x:id="CueMix">
+					<Attributes x:id="slots" version="1"/>
+				</Attributes>
+				<Attributes x:id="InputFX" gain="0" invertPhaseL="0" invertPhaseR="0"/>
+				<Attributes x:id="MacroControls" showMacroPads="0"/>
+				<Attributes x:id="Sends">
+					<Attributes x:id="Presets" pname="default" dirty="0"/>
+				</Attributes>
+			</AudioTrackChannel>
+		</ChannelGroup>
+	</Attributes>
+	<Attributes x:id="ListenBusManager" useListenBus="0" soloThroughListenBus="0" prefaderListen="0"/>
+</AudioMixer>

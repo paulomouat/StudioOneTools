@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<MediaPool>
+	<Attributes x:id="rootFolder">
+		<MediaFolder name="Audio">
+			<AudioClip mediaID="{D0A35BCB-72EC-BC43-B2DF-946D86CC872A}" peak="0.33020293712615966796875" useCount="1">
+				<Url type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-04.wav" x:id="path" />
+				<AudioTempoMap tempoApproved="1" x:id="tempoMap">
+					<AudioTempoMapSegment offset="0" tempo="0.5" />
+				</AudioTempoMap>
+				<Attributes bitDepth="32" frameCount="156114" numChannels="2" sampleRate="96000" sampleType="1" x:id="format" />
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url type="1" url="media://ClipData/Audio/nf-04/nf-04.audiobendx" x:id="bendMarkers" />
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url type="1" url="media://ClipData/Audio/nf-04/nf-04.chordx" x:id="chords" />
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+			<AudioClip mediaID="{D862BA11-349A-9348-9168-AD8491062369}" peak="0.2047574222087860107421875" useCount="1">
+				<Url type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-03.wav" x:id="path" />
+				<AudioTempoMap tempoApproved="1" x:id="tempoMap">
+					<AudioTempoMapSegment offset="0" tempo="0.5" />
+				</AudioTempoMap>
+				<Attributes bitDepth="32" frameCount="243903" numChannels="2" sampleRate="96000" sampleType="1" x:id="format" />
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url type="1" url="media://ClipData/Audio/nf-03/nf-03.audiobendx" x:id="bendMarkers" />
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url type="1" url="media://ClipData/Audio/nf-03/nf-03.chordx" x:id="chords" />
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+			<AudioClip mediaID="{04F6559F-E956-D740-A762-33F94FA1A450}" peak="0.00199488759972155094146728515625" useCount="1">
+				<Url type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-02.wav" x:id="path" />
+				<AudioTempoMap tempoApproved="1" x:id="tempoMap">
+					<AudioTempoMapSegment offset="0" tempo="0.5" />
+				</AudioTempoMap>
+				<Attributes bitDepth="32" frameCount="157826" numChannels="2" sampleRate="96000" sampleType="1" x:id="format" />
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url type="1" url="media://ClipData/Audio/nf-02/nf-02.audiobendx" x:id="bendMarkers" />
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url type="1" url="media://ClipData/Audio/nf-02/nf-02.chordx" x:id="chords" />
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+			<AudioClip mediaID="{7EC530CC-A04B-824B-A4D0-BC94CD8FEF13}" peak="0.00047056461335159838199615478515625" useCount="1">
+				<Url type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/raw/nf-01.wav" x:id="path" />
+				<AudioTempoMap tempoApproved="1" x:id="tempoMap">
+					<AudioTempoMapSegment offset="0" tempo="0.5" />
+				</AudioTempoMap>
+				<Attributes bitDepth="32" frameCount="113087" numChannels="2" sampleRate="96000" sampleType="1" x:id="format" />
+				<List x:id="modifications">
+					<AudioModification id="0">
+						<List x:id="propertySets">
+							<AudioBendProperties threshold="0.2000000000000000111022302462515654042363166809082" visible="0">
+								<Url type="1" url="media://ClipData/Audio/nf-01/nf-01.audiobendx" x:id="bendMarkers" />
+							</AudioBendProperties>
+							<AudioChordProperties tuningFrequency="440">
+								<Url type="1" url="media://ClipData/Audio/nf-01/nf-01.chordx" x:id="chords" />
+							</AudioChordProperties>
+						</List>
+					</AudioModification>
+				</List>
+			</AudioClip>
+		</MediaFolder>
+	</Attributes>
+	<Attributes x:id="packageInfos">
+		<Association key="presonus.studioone.bigfishloops" value="Big Fish Audio Loops and Kits" />
+		<Association key="presonus.studioone.eal" value="Electronic Audioloops" />
+		<Association key="samplemagic.studioone.impactxt" value="Impact XT Kits and Sounds" />
+		<Association key="presonus.studioone.mvploops" value="MVP Loops and Kits" />
+		<Association key="presonus.studioone.malletxt" value="Presence XT Core Mallets" />
+		<Association key="presonus.studioone.pervocxt" value="Presence XT Core Percussion and Vocals" />
+		<Association key="presonus.studioone.teaser1" value="Prime Selection Loops and Sounds" />
+		<Association key="presonus.studioone.samplemagicloops" value="Sample Magic Loops and Kits" />
+		<Association key="presonus.studioone.IR" value="Studio One Impulse Responses" />
+		<Association key="presonus.studioone.instruments" value="Studio One Instruments Vol 1" />
+		<Association key="presonus.studioone.instruments2" value="Studio One Instruments Vol 2" />
+		<Association key="presonus.studioone.musicloops" value="Studio One Musicloops" />
+		<Association key="presonus.studioone.ueberschall" value="Ueberschall Impact Drums" />
+		<Association key="presonus.studioone.vengeance" value="Vengeance-Sound" />
+	</Attributes>
+	<Attributes type="1" url="file:///Users/paulomouat/Documents/Studio One/Songs/test-song/test-song.song" x:id="documentPath" />
+</MediaPool>
